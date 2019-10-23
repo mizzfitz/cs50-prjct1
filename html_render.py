@@ -1,5 +1,10 @@
 from flask import render_template
+import os, json
 
-def render(path):
-    index = {"text1":"This is the first text block", "text2":"This is the second text block"}
-    return render_template("index.html", index=index)
+NAME = "BiLingue"
+
+def render(path, page, usr):
+    f = open(os.path.join(path, "copy", f"{page}.json"))
+    copy = json.loads(f.read())
+    
+    return render_template(f"{page}.html", name=NAME, copy=copy, usr=usr)

@@ -1,11 +1,13 @@
-<!doctype html>
+{% extends "layout.html" %}
 
-<html>
-	<head>
-		<title>Page</title>
-	</head>
-	<body>
-		<h1>{{ index["text1"] }}</h1>
-		{{ index["text2"] }}
-	</body>
-</html>
+{% block content %}
+	<div class="main-content">
+		<p>{{ copy["prompt-en"] }}</p>
+		<p>{{ copy["prompt-fr"] }}</p>
+		<form>
+			<input type="radio" name="lang" value="fr">francais
+			<input type="radio" name="lang" value="en">english
+			<input type="submit" value="{{ copy['btn'] }}">
+		</form>
+	</div>
+{% endblock %}

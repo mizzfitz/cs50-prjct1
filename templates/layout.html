@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>{{ copy["title"] }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class="header">
+			<div class="page-caption">
+				<h1>{{ name }}</h1>
+			</div>
+			<div class="usr-info">
+				<a href="#">{{ usr["name"] }}</a>
+			</div>
+		</div>
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
