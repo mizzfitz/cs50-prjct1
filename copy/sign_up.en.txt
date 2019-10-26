@@ -1,0 +1,10 @@
+Create Account
+User Name
+Password
+Confirm password
+First Language
+Prefered Language
+(The language used within the site)
+French
+English
+Submit

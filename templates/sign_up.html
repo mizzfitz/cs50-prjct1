@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="login">
+	<form action="{{ url_for('sign_up') }}" method="POST">
+		<h6>{{ copy['usr_name'] }}</h6>
+		<p><input type="text" name="usr_name" placeholder="{{ copy['usr_name'] }}">
+		<h6>{{ copy['passwd1'] }}</h6>
+		<p><input type="text" name="passwd1" placeholder="{{ copy['passwd1'] }}">
+		<p><input type="text" name="passwd2" placeholder="{{ copy['passwd2'] }}">
+		<h6>{{ copy['lang_nat'] }}</h6>
+		<p><input type="radio" name="lang" value="fr">{{ copy['radio_fr'] }}
+		<input type="radio" name="lang" value="en">{{ copy['radio_en'] }}
+		<h6>{{ copy['lang_pref'] }}</h6>
+		<p>{{ copy['lang_pref_exp'] }}</p>
+		<p><input type="radio" name="pref-lang" value="fr">{{ copy['radio_fr'] }}
+		<input type="radio" name="pref-lang" value="en">{{ copy['radio_en'] }}
+		{{ err_txt }}
+		<p><input type="submit" value="{{ copy['submit'] }}">
+	</form>
+</div>
+{% endblock %}

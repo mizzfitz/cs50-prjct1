@@ -1,18 +1,36 @@
 class Usr:
 
-    def __init__(self, usr_name, usr_id=0, pref_lang=""):
-        self.usr_id = usr_id
+    def __init__(self, usr_name, pref_lang="", usr_id=0):
         self.usr_name = usr_name
-        self.passwd = "password"
-        self.lang = "en"
         self.pref_lang = pref_lang
+        self.usr_id = usr_id
+
+class User(Usr):
+    def __init__(self, usr_name, passwd, pref_lang="", lang="", usr_id=0):
+        super().__init__(usr_name, pref_lang)
+        self.passwd = passwd
+        self.lang = lang
+        self.usr_id = usr_id
 
 class Users:
     def __init__(self):
-        self.users = {1: Usr("utilisateur", 1, "fr"), 2: Usr("user", 2, "en")}
+        self.users = {1: Usr("utilisateur", "fr", 1), 2: Usr("user", "en", 2)}
+
+    def check_new_usr(self, form, passwd2):
+        if form.lang == None or form.pref_lang == None:
+            return "err-no-lang"
+        elif form.usr_name == "":
+            return "err-usr-name"
+        elif form.passwd == "" or form.passwd != passwd2:
+            return "err-passwd"
+        else:
+            return "success"
+
+    def add_usr(self, form):
+        return True
 
     def check_login(self, usr_name, passwd):
-        return 1
+        return 2
 
     def login(self, usr_id):
         return self.users[usr_id]

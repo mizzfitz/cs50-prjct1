@@ -6,25 +6,31 @@ from databases import Usr
 NAME = "BiLingue"
 
 def render_error(path, err, lang):
-    e = ["no-login", "dito-usr-name", "unknown"]
-    f = open(os.path.join(path, "copy" f"error{lang}.txt"))
-    texts = f.readlines()
-    f.close()
+    k = open(os.path.join(path, "copy", "error.key"))
+    keys = k.readlines()
+    k.close()
+    t = open(os.path.join(path, "copy", f"error{lang}.txt"))
+    texts = t.readlines()
+    t.close()
+    errors = {}
     i = 0
-    while i < len(e):
-        errors[e[i]] = texts[i].strip()
+    while i < len(keys):
+        errors[keys[i].strip()] = texts[i].strip()
+        i += 1
     return f"<p class='error'>{errors.get(err)}</p>"
 
 def render_usr(usr):
-    fr = {"login":"Connexion", "sign-up":"S'enregistrer"}
-    en = {"login":"Login", "sign-up":"Create Account"}
+    fr = {"login":"Connexion", "sign-up":"S'enregistrer", "logout":"Déconnexion"}
+    en = {"login":"Login", "sign-up":"Create Account", "logout":"Logout"}
     bi = {"login":"Login/Connexion", "sign-up":"Create Account/S'enregistrer"}
     text = {"fr": fr, "en": en, "": bi}
 
     if usr.usr_name == None:
         return f"<a href=\"{url_for('login')}\">{text[usr.pref_lang]['login']}</a><a href=\"{url_for('sign_up')}\">{text[usr.pref_lang]['sign-up']}</a>"
     else:
-        return Markup(f"<a href=\"{{ url_for('{usr.usr_name}')\">%s</a>") % usr.usr_name
+        html = Markup(f"<a href=\"{{ url_for('{usr.usr_name}')\">%s</a>") % usr.usr_name
+        html = f"{html}<a href=\"{url_for('logout')}\">{text[usr.pref_lang]['logout']}</a>"
+        return html
 
 def render(path, page, usr, err=""):
     l = usr.pref_lang

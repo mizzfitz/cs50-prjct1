@@ -1,3 +1,5 @@
 Fausse nom d'utilisateur ou mot clé
-Nom d'utilisateur est deja utilisé
+Nom d'utilisateur est vide ou deja utilisé
+Doit choisissez une langue natal et langue préfèré
+Mots clés doit étre pareille et pas vide
 Il y a été une erreur unconnue

@@ -1,0 +1,10 @@
+S'enregistrer
+Nom D'utilisateur
+Mot Clé
+Confirmez la Mot Clé
+Langue Natal
+Langue Préfèré
+(la langue de ce cite-web)
+Français
+Anglais
+S'enregistrer

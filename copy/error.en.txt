@@ -1,3 +1,5 @@
 Incorrect username or password
-User name already exists
+User name is blank or already exists
+Must choose a language
+Passwords must match and not be blank
 An unknown error occured
