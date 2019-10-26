@@ -1,19 +1,21 @@
-class Usrs:
+class Usr:
 
-    def __init__(self):
-        self.usr_name = "usr_name"
+    def __init__(self, usr_name, usr_id=0, pref_lang=""):
+        self.usr_id = usr_id
+        self.usr_name = usr_name
         self.passwd = "password"
         self.lang = "en"
-        self.pref_lang = "en"
+        self.pref_lang = pref_lang
 
-    def login(self, usr, passwd):
-        if (usr == self.usr_name) and (passwd == self.passwd):
-            return True
-        else:
-            return False
+class Users:
+    def __init__(self):
+        self.users = {1: Usr("usr_name"), 2: Usr("usr_2")}
 
-    def usr_lang(self):
-        return {"1st_lang":self.lang, "pref_lang":self.pref_lang}
+    def get_usr(self, usr_id):
+        return self.users.get(usr_id)
+
+    def login(self, usr_name, passwd):
+        return Usr("free-user")
 
 class Books:
 
@@ -26,10 +28,12 @@ class Books:
 class Reviews:
     
     def __init__(self):
-        self.reviews = {1257:[["usr_name","en","en",5,"this is a good book",5,"C'est une bonne livre"]],
-                3480:[["usr_name","en","en",4,"interesting read",4,"C'est interesant"]],
-                1563:[["usr_name","en","en",5,"a fun book",5,"une livre jouable"],["other_usr","fr","fr",5,"a great literary work",5,"une bonne oeuvre literare"]]}
+        self.reviews = {1257:[[1,"en","en",5,"this is a good book",5,"C'est une bonne livre"]],
+                3480:[[1,"en","en",4,"interesting read",4,"C'est interesant"]],
+                1563:[[1,"en","en",5,"a fun book",5,"une livre jouable"],[2,"fr","fr",5,"a great literary work",5,"une bonne oeuvre literare"]]}
 
     def search(self, book_id):
         return self.reviews[book_id]
 
+if __name__ == "__main__":
+    print("This is a module to manage specific databases within a flask app.  It provides no standalone functionality")

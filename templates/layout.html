@@ -10,8 +10,14 @@
 			<div class="page-caption">
 				<h1>{{ name }}</h1>
 			</div>
+			<div class="search">
+				<form action="{{ url_for('index') }}" method="post">
+					<input type="text" name="search" placeholder="Search">
+					<input type="submit" value="Search">
+				</form>
+			</div>
 			<div class="usr-info">
-				<a href="#">{{ usr["name"] }}</a>
+				{{ usr }}
 			</div>
 		</div>
 		<div class="content">

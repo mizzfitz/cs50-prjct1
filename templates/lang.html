@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="main-content">
+		<p>{{ copy["prompt-en"] }}</p>
+		<p>{{ copy["prompt-fr"] }}</p>
+		<form action="{{ url_for('get_lang') }}" method="POST">
+			<input type="radio" name="lang" value="fr">{{ copy["opt-fr"] }}
+			<input type="radio" name="lang" value="en">{{ copy["opt-en"] }}
+			<input type="submit" value="{{ copy['btn'] }}">
+		</form>
+	</div>
+{% endblock %}
