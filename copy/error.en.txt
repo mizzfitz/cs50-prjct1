@@ -1,0 +1,3 @@
+Incorrect username or password
+User name already exists
+An unknown error occured

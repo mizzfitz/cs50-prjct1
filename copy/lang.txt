@@ -1,6 +1,6 @@
 BiLingue
-Choose your preferred language or sign in
-Choisissez votre langue préfèré ou s'inscrire
+Choose your preferred language
+Choisissez votre langue préfèré
 Français/French
 English/Anglais
 Submit/Donnez

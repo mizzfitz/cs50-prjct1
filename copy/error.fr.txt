@@ -1,0 +1,3 @@
+Fausse nom d'utilisateur ou mot clé
+Nom d'utilisateur est deja utilisé
+Il y a été une erreur unconnue

@@ -9,13 +9,13 @@ class Usr:
 
 class Users:
     def __init__(self):
-        self.users = {1: Usr("usr_name"), 2: Usr("usr_2")}
+        self.users = {1: Usr("utilisateur", 1, "fr"), 2: Usr("user", 2, "en")}
 
-    def get_usr(self, usr_id):
-        return self.users.get(usr_id)
+    def check_login(self, usr_name, passwd):
+        return 1
 
-    def login(self, usr_name, passwd):
-        return Usr("free-user")
+    def login(self, usr_id):
+        return self.users[usr_id]
 
 class Books:
 
