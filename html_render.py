@@ -20,9 +20,9 @@ def render_error(path, err, lang):
     return f"<p class='error'>{errors.get(err)}</p>"
 
 def render_usr(usr):
-    fr = {"login":"Connexion", "sign-up":"S'enregistrer", "logout":"Déconnexion"}
-    en = {"login":"Login", "sign-up":"Create Account", "logout":"Logout"}
-    bi = {"login":"Login/Connexion", "sign-up":"Create Account/S'enregistrer"}
+    fr = {"login":"se connecter", "sign-up":"créer un compte", "logout":"déconnexion"}
+    en = {"login":"login", "sign-up":"create account", "logout":"logout"}
+    bi = {"login":"login/se connecter", "sign-up":"create account/créer un compte"}
     text = {"fr": fr, "en": en, "": bi}
 
     if usr.usr_name == None:

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="login">
+<div class="form">
 	<form action="{{ url_for('sign_up') }}" method="POST">
 		<h6>{{ copy['usr_name'] }}</h6>
 		<p><input type="text" name="usr_name" placeholder="{{ copy['usr_name'] }}">

@@ -24,8 +24,7 @@ def index(search_key=""):
         if search_key == "":
             search_key = request.form.get("search")
         return search_key
-    else:
-        return render(app.root_path, "index", session["usr"])
+    return render(app.root_path, "index", session["usr"])
 
 @app.route("/lang", methods=["GET", "POST"])
 def get_lang():

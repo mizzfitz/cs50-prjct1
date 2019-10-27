@@ -1,0 +1,115 @@
+.header div a, .content .form {
+  border-radius: 5px; }
+
+.header div h1 {
+  text-shadow: 2px 2px 5px #5f5949; }
+
+.header div a, .header div form input {
+  box-shadow: 2px 2px 5px #5f5949; }
+
+.header div a:hover {
+  box-shadow: -2px 2px 5px #5f5949; }
+
+body {
+  background-color: #fffcf0;
+  color: #0a0802;
+  margin: 0px;
+  font-family: Sans-serif; }
+
+.header {
+  background-color: #b4a083;
+  box-shadow: 0px 5px 10px #5f5949;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden; }
+  .header div {
+    margin: 0px;
+    display: block;
+    float: left;
+    width: 33%;
+    height: 50px; }
+    .header div h1 {
+      line-height: 50px;
+      font-size: 35px;
+      margin: -1px 15px; }
+    .header div a {
+      text-decoration: none;
+      float: right;
+      height: 24px;
+      margin: 11px 5px;
+      color: #c56f19;
+      line-height: 24px;
+      padding: 0px 5px;
+      background-color: #fffcf0;
+      border: 1px solid #c56f19;
+      display: inline-block; }
+    .header div a:hover {
+      background-color: #e5d3af; }
+    .header div form {
+      line-height: 30px;
+      margin: 7px 0px; }
+    .header div .header {
+      text-align: left; }
+    .header div .search {
+      text-align: center; }
+    .header div .usr-info {
+      text-align: right; }
+
+.content {
+  margin: 65px 15%; }
+  .content .form {
+    text-align: center;
+    margin: 60px 25%;
+    box-shadow: 0px 0px 10px #5f5949;
+    padding: 10px; }
+    .content .form span {
+      display: inline-block; }
+
+@media (max-width: 605px) {
+  .header {
+    height: auto;
+    position: static;
+    margin: 0px 0px;
+    padding: 10px;
+    width: auto; }
+    .header div, .header .page-caption, .header .search, .header .usr-info {
+      height: auto;
+      width: 100%;
+      float: none;
+      text-align: center;
+      margin: 5px 5px;
+      box-shadow: none; }
+      .header div a, .header .page-caption a, .header .search a, .header .usr-info a {
+        margin: 5px auto;
+        float: none;
+        height: auto; }
+
+  .content {
+    margin: 0px 0px; }
+    .content .form {
+      margin: 10px 0px;
+      box-shadow: none; } }
+@media (min-width: 606px) and (max-width: 1365px) {
+  .header div {
+    width: auto;
+    display: inline-block;
+    float: left;
+    margin: 0px 1px;
+    padding: 0px 10px;
+    box-shadow: 0px 2px 5px #5f5949; } }
+@media (min-width: 606px) and (max-width: 1065px) {
+  .header {
+    height: 50px;
+    overflow: visible; }
+    .header .search, .header .usr-info {
+      float: right; }
+    .header .usr-inf {
+      box-shadow: none; }
+
+  .content {
+    margin: 115px; } }
+
+/*# sourceMappingURL=style.css.map */
