@@ -1,0 +1,3 @@
+BiLingue
+isbn, titre, auteur, année
+Recherche

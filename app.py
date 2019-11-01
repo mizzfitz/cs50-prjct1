@@ -6,7 +6,7 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from html_render import Renderer
+from html_render import render
 from databases import Books, Reviews, Users, Usr, User
 from session_manager import log_rt, check_lang, resume_sess
 
@@ -25,7 +25,6 @@ db = scoped_session(sessionmaker(bind=engine))
 users = Users(db)
 books = Books(db)
 reviews = Reviews(db)
-renderer = Renderer("BiLingue")
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/<string:search_key>", methods=["GET", "POST"])
@@ -35,7 +34,7 @@ def index(search_key=""):
         return redirect(url_for("get_lang"))
     if request.method == "POST":
         return ""
-    return renderer.render(app.root_path, "index", session["usr"])
+    return render(app.root_path, "index", session["usr"])
 
 @app.route("/lang", methods=["GET", "POST"])
 def get_lang():
@@ -50,7 +49,7 @@ def get_lang():
         else:
             return redirect(url_for("get_lang"))
     else:
-        return renderer.render(app.root_path,"lang", session["usr"])
+        return render(app.root_path, "lang", session["usr"])
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -60,10 +59,10 @@ def login():
     if request.method == "POST":
         #return str(users.check_login(request.form.get("usr_name"), request.form.get("passwd")))
         if not users.check_login(request.form.get("usr_name"), request.form.get("passwd")):
-            return renderer.render(app.root_path,"login", session["usr"], "err-login")
+            return render(app.root_path,"login", session["usr"], "err-login")
         session["usr"] = users.login(request.form.get("usr_name"))
         return resume_sess()
-    return renderer.render(app.root_path,"login", session["usr"])
+    return render(app.root_path,"login", session["usr"])
 
 @app.route("/create-account", methods=["GET", "POST"])
 def sign_up():
@@ -74,14 +73,14 @@ def sign_up():
         form = User(request.form.get("usr_name"), request.form.get("passwd1"), request.form.get("pref-lang"), request.form.get("lang"))
         test = users.check_new_usr(form, request.form.get("passwd2"))
         if test == "err-usr-name" or test == "err-no-lang" or test == "err-passwd":
-            return renderer.render(app.root_path, "sign_up", session["usr"], test)
+            return render(app.root_path, "sign_up", session["usr"], test)
         else:
             if users.add_usr(form):
                 session["usr"] = form
                 return resume_sess()
             else:
-                return renderer.render(app.root_path, "sign_up", session["usr"], "err-unknown")
-    return renderer.render(app.root_path, "sign_up", session["usr"])
+                return render(app.root_path, "sign_up", session["usr"], "err-unknown")
+    return render(app.root_path, "sign_up", session["usr"])
 
 @app.route("/book", methods=["GET"])
 def book():
