@@ -41,7 +41,7 @@ def get_copy(path, page, lang):
     c.update(read_dict(path, "header", lang))
     return c
 
-def render(path, page, usr, err=""):
+def render(path, page, usr, err="", db={}):
     l = usr.pref_lang
     if l != "":
         l = f".{l}"

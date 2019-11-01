@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="book-info">
+	<h2>{{ book.title }}</h2>
+	<ul>
+		<li>{{ db['book'].author }}</li>
+		<li>{{ db['book'].isbn }}</li>
+		<li>{{ db['book'].year }}</li>
+		<li>{{ copy['lang_publish'] }}{{ db['book'].lang }}</li>
+	</ul>
+</div>
+<div class="comment-cont">
+	{% for comment in db['comments'] %}
+	<div class="comment">
+		<a href="{{ url_for(comment.usr_name) }}"><h3>{{ comment.usr_name }}</h3></a>
+		<p>{{ comment.lang_nat }}</p>
+		<div class="lang-comment">
+			<h6>{{ copy['stars'] }}{{ comment.first_lang_stars}}</h6>
+			<p>{{ comment.first_lang_review }}</p>
+		</div>
+		<div class="lang-comment">
+			<h6>{{ copy['stars'] }}{{ comment.second_lang_stars}}</h6>
+			<p>{{ comment.second_lang_review }}</p>
+		</div>
+	</div>
+	<div class="add-comment">
+		{{ add_comment }}
+	</div>
+</div>
+{% endblock %}
