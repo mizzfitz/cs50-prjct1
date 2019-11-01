@@ -5,8 +5,7 @@ def resume_sess():
     if session.get("req_log") is None or session.get("req_log") == request.endpoint:
         return redirect(url_for("index"))
     else:
-        #return redirect(url_for(session["req_log"]))
-        return session.get("req_log")
+        return redirect(url_for(session["req_log"]))
 
 def log_rt():
     session["req_log"] = request.endpoint
