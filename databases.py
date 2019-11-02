@@ -58,19 +58,28 @@ class Books:
 
     def __init__(self, db):
         self.books = [["The Way of Shadows", "en", 1257],["The Fellowship of the Ring", "en", 3480],["Le Petit Prince", "fr", 1563]]
+        self.db = db
 
     def search(self, search):
-        return self.books
+        if "'" in search:
+            search = search.replace("'", "''")
+        db_namespc = ["isbn","title","author"]
+        result = []
+        for i in db_namespc:
+            command = f"SELECT isbn, title, author, year, lang FROM books WHERE {i} LIKE '%{search.lower()}%' LIMIT 20;"
+            result = result + self.db.execute(command).fetchall()
+        return result
+
+    def get_book_by_isbn(self, isbn):
+        return self.db.execute("SELECT isbn, title, author, year, lang, AVG(first_lang_stars), AVG(second_lang_stars) FROM books JOIN reviews ON books.id = reviews.book_id WHERE isbn = :isbn;", {"isbn": isbn}).fetchone()
 
 class Reviews:
     
     def __init__(self, db):
-        self.reviews = {1257:[[1,"en","en",5,"this is a good book",5,"C'est une bonne livre"]],
-                3480:[[1,"en","en",4,"interesting read",4,"C'est interesant"]],
-                1563:[[1,"en","en",5,"a fun book",5,"une livre jouable"],[2,"fr","fr",5,"a great literary work",5,"une bonne oeuvre literare"]]}
+        self.db = db
 
-    def search(self, book_id):
-        return self.reviews[book_id]
+    def get_reviews_by_book(self, book_id):
+        return self.db.execute("SELECT first_lang_stars, second_lang_stars, first_lang_review, second_lang_review, usr_name, lang_nat FROM reviews JOIN users ON reviews.usr_id = users.id WHERE reviews.book_id = :book_id;", {"book_id": book_id}).fetchall()
 
     def add(self, book_id, usr_id, review):
         return 0

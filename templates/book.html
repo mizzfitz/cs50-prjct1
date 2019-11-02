@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="book-info">
-	<h2>{{ book.title }}</h2>
+	<h2>{{ db['book.title'] }}</h2>
 	<ul>
-		<li>{{ db['book'].author }}</li>
-		<li>{{ db['book'].isbn }}</li>
-		<li>{{ db['book'].year }}</li>
-		<li>{{ copy['lang_publish'] }}{{ db['book'].lang }}</li>
+		<li>{{ copy['book_author'] }}{{ db['book'].author }}</li>
+		<li>{{ copy['book_isbn'] }}{{ db['book'].isbn }}</li>
+		<li>{{ copy['book_year'] }}{{ db['book'].year }}</li>
+		<li>{{ copy['book_lang'] }}{{ db['book'].lang }}</li>
 	</ul>
 </div>
 <div class="comment-cont">

@@ -29,14 +29,14 @@ reviews = Reviews(db)
 renderer = Renderer(app.root_path)
 
 @app.route("/", methods=["GET", "POST"])
-@app.route("/<string:search_key>", methods=["GET", "POST"])
-def index(search_key=""):
+def index():
     log_rt()
     if check_lang():
         return redirect(url_for("get_lang"))
-    if request.method == "POST":
-        return ""
-    return renderer.render("index", session["usr"])
+    if not request.form.get("search"):
+        return renderer.render("index", session["usr"])
+    db = dict(books=books.search(request.form.get("search")))
+    return renderer.render("search", session["usr"], db=db)
 
 @app.route("/lang", methods=["GET", "POST"])
 def get_lang():
@@ -61,7 +61,7 @@ def login():
     if request.method == "POST":
         #return str(users.check_login(request.form.get("usr_name"), request.form.get("passwd")))
         if not users.check_login(request.form.get("usr_name"), request.form.get("passwd")):
-            return renderer.render("login", session["usr"], "err-login")
+            return renderer.render("login", session["usr"], err="err-login")
         session["usr"] = users.login(request.form.get("usr_name"))
         return resume_sess()
     return renderer.render("login", session["usr"])
@@ -75,13 +75,13 @@ def sign_up():
         form = User(request.form.get("usr_name"), request.form.get("passwd1"), request.form.get("pref-lang"), request.form.get("lang"))
         test = users.check_new_usr(form, request.form.get("passwd2"))
         if test == "err-usr-name" or test == "err-no-lang" or test == "err-passwd":
-            return renderer.render("sign_up", session["usr"], test)
+            return renderer.render("sign_up", session["usr"], err=test)
         else:
             if users.add_usr(form):
                 session["usr"] = form
                 return resume_sess()
             else:
-                return renderer.render("sign_up", session["usr"], "err-unknown")
+                return renderer.render("sign_up", session["usr"], err="err-unknown")
     return renderer.render("sign_up", session["usr"])
 
 @app.route("/book", methods=["GET"])

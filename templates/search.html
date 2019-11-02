@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% for book in db['books'] %}
+<a href="{{ book.isbn }}">
+	<div class="book">
+		<h2>{{ book.title }}</h2>
+		<ul>
+			<li>{{ copy['book_author'] }}</li>
+			<li class="book_stat">{{ book.author }}</li>
+			<li>{{ copy['book_isbn'] }}</li>
+			<li class="book_stat">{{ book.isbn }}</li>
+			<li>{{ copy['book_year'] }}</li>
+			<li class="book_stat">{{ book.year }}</li>
+			<li>{{ copy['book_lang'] }}</li>
+			<li class="book_stat">{{ book.lang }}</li>
+		</ul>
+	</div>
+</a>
+{% else %}
+<h2>{{ copy['no_search_results'] }}</h2>
+{% endfor %}
+{% endblock %}

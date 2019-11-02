@@ -1,10 +1,10 @@
-.header div a, .content .form {
+.header div a, .content .form, .content .book {
   border-radius: 5px; }
 
 .header div h1 {
   text-shadow: 2px 2px 5px #5f5949; }
 
-.header div a, .header div form input {
+.header div a, .header div form input, .content .book {
   box-shadow: 2px 2px 5px #5f5949; }
 
 .header div a:hover {
@@ -73,6 +73,22 @@ a {
     padding: 10px; }
     .content .form span {
       display: inline-block; }
+  .content .book {
+    color: #0a0802;
+    padding: 5px 10px;
+    padding-bottom: 40px;
+    margin: 7px 0px;
+    text-transform: capitalize; }
+    .content .book h2 {
+      margin: 0px 0px; }
+    .content .book ul {
+      list-style-type: none; }
+      .content .book ul li {
+        margin: 0px 10px;
+        float: left; }
+      .content .book ul .book_stat {
+        color: #c56f19;
+        text-transform: capitalize; }
 
 @media (max-width: 605px) {
   .header {
@@ -97,7 +113,9 @@ a {
     margin: 0px 0px; }
     .content .form {
       margin: 10px 0px;
-      box-shadow: none; } }
+      box-shadow: none; }
+    .content .book {
+      height: 120px; } }
 @media (min-width: 606px) and (max-width: 1365px) {
   .header div {
     width: auto;
@@ -118,6 +136,8 @@ a {
   .content {
     margin: 115px 15%; }
     .content .form {
-      margin: 0px; } }
+      margin: 0px; }
+    .content .book {
+      height: 90px; } }
 
 /*# sourceMappingURL=style.css.map */

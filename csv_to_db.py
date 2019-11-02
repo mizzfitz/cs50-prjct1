@@ -34,7 +34,7 @@ class Csv_to_db():
                 print("Formated")
             else:
                 print(f"Adding {isbn}, {title}, {author}, {year}, {self.lang} to database...")
-                self.db.execute("INSERT INTO books (isbn, title, author, year, lang) VALUES (:isbn, :title, :author, :year, :lang)", {"isbn": isbn, "title": title, "author": author, "year": int(year), "lang": self.lang})
+                self.db.execute("INSERT INTO books (isbn, title, author, year, lang) VALUES (:isbn, :title, :author, :year, :lang)", {"isbn": isbn.lower(), "title": title.lower(), "author": author.lower(), "year": int(year), "lang": self.lang})
         self.db.commit()
 
     def clean_up(self):

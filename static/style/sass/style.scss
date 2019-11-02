@@ -120,6 +120,34 @@ a{
 			display: inline-block;
 		}
 	}
+
+	.book{
+		color: $col-text;
+		@extend %rounded-block;
+		@extend %light-shadow-box;
+		padding: 5px 10px;
+		padding-bottom: 40px;
+		margin: 7px 0px;
+		text-transform: capitalize;
+
+		h2{
+			margin: 0px 0px;
+		}
+
+		ul{
+			list-style-type: none;
+
+			li{
+				margin: 0px 10px;
+				float: left;
+			}
+
+			.book_stat{
+				color: $col-text-bold;
+				text-transform: capitalize;
+			}
+		}
+	}
 }
 
 @media (max-width: 605px) {
@@ -152,6 +180,10 @@ a{
 		.form {
 			margin: 10px 0px;
 			box-shadow: none;
+		}
+
+		.book{
+			height: 120px;
 		}
 	}
 }
@@ -189,6 +221,10 @@ a{
 
 		.form{
 			margin: 0px;
+		}
+
+		.book{
+			height: 90px;
 		}
 	}
 }

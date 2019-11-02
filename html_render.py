@@ -50,7 +50,7 @@ class Renderer:
         if l != "":
             l = f".{l}"
 
-        return render_template(f"{page}.html", copy=self.get_copy(page, l), usr=Markup(self.render_usr(usr)), err_txt=Markup(self.render_error(l, err)))
+        return render_template(f"{page}.html", copy=self.get_copy(page, l), usr=Markup(self.render_usr(usr)), err_txt=Markup(self.render_error(l, err)), db=db)
 
 if __name__ == "__main__":
     print("This module is intended for use within a specific flask app")
