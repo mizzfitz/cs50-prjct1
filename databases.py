@@ -70,15 +70,23 @@ class Books:
             result = result + self.db.execute(command).fetchall()
         return result
 
-    def get_book_by_isbn(self, isbn):
-        return self.db.execute("SELECT isbn, title, author, year, lang, AVG(first_lang_stars), AVG(second_lang_stars) FROM books JOIN reviews ON books.id = reviews.book_id WHERE isbn = :isbn;", {"isbn": isbn}).fetchone()
+    def get_id_by_isbn(self, isbn):
+        return self.db.execute("SELECT id FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone()
+
+    def get_by_isbn(self, isbn):
+        keys = ["first_lang_stars", "second_lang_stars"]
+        response = {"book": self.db.execute("SELECT id, isbn, title, author, year, lang FROM books WHERE isbn = :isbn;", {"isbn": isbn}).fetchone()}
+        for k in keys:
+            command = f"SELECT AVG({k}) FROM reviews WHERE book_id = {response['book'].id} GROUP BY book_id;"
+            response[k] = self.db.execute(command).fetchone()
+        return response
 
 class Reviews:
     
     def __init__(self, db):
         self.db = db
 
-    def get_reviews_by_book(self, book_id):
+    def get_by_book_id(self, book_id):
         return self.db.execute("SELECT first_lang_stars, second_lang_stars, first_lang_review, second_lang_review, usr_name, lang_nat FROM reviews JOIN users ON reviews.usr_id = users.id WHERE reviews.book_id = :book_id;", {"book_id": book_id}).fetchall()
 
     def add(self, book_id, usr_id, review):

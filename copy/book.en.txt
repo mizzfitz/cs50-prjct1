@@ -1,0 +1,12 @@
+BiLingue
+author:
+isbn:
+year:
+original language:
+average review for reading in a first language:
+average review for reading in a second language:
+first language:
+stars:
+review for reading in a first language
+review for reading in a second language
+have you read this book? Submit a review!

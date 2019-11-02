@@ -84,12 +84,18 @@ def sign_up():
                 return renderer.render("sign_up", session["usr"], err="err-unknown")
     return renderer.render("sign_up", session["usr"])
 
-@app.route("/book", methods=["GET"])
-def book():
+@app.route("/book/<string:isbn>", methods=["GET"])
+def book(isbn):
     log_rt()
     if check_lang():
         return redirect(url_for("get_lang"))
-    return "Book page"
+    db = {"book": books.get_by_isbn(isbn)}
+    db["comments"] = reviews.get_by_book_id(db["book"]["book"].id)
+    return renderer.render("book", session["usr"], db=db)
+
+@app.route("/review/<string:isbn>", methods=["GET", "POST"])
+def review(isbn):
+    return "reviews here"
 
 @app.route("/logout")
 def logout():

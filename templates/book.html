@@ -2,30 +2,35 @@
 
 {% block content %}
 <div class="book-info">
-	<h2>{{ db['book.title'] }}</h2>
+	<h2>{{ db['book']['book'].title }}</h2>
 	<ul>
-		<li>{{ copy['book_author'] }}{{ db['book'].author }}</li>
-		<li>{{ copy['book_isbn'] }}{{ db['book'].isbn }}</li>
-		<li>{{ copy['book_year'] }}{{ db['book'].year }}</li>
-		<li>{{ copy['book_lang'] }}{{ db['book'].lang }}</li>
+		<li>{{ copy['book_author'] }}{{ db['book']['book'].author }}</li>
+		<li>{{ copy['book_isbn'] }}{{ db['book']['book'].isbn }}</li>
+		<li>{{ copy['book_year'] }}{{ db['book']['book'].year }}</li>
+		<li>{{ copy['book_lang'] }}{{ db['book']['book'].lang }}</li>
+		<li>{{ copy['book_avg_rev_1st'] }}{{ db['book']['first_lang_stars'] }}</li>
+		<li>{{ copy['book_avg_rev_2nd'] }}{{ db['book']['second_lang_stars'] }}</li>
 	</ul>
 </div>
 <div class="comment-cont">
 	{% for comment in db['comments'] %}
 	<div class="comment">
 		<a href="{{ url_for(comment.usr_name) }}"><h3>{{ comment.usr_name }}</h3></a>
-		<p>{{ comment.lang_nat }}</p>
+		<p>{{ copy['usr_lang_nat'] }}{{ comment.lang_nat }}</p>
 		<div class="lang-comment">
-			<h6>{{ copy['stars'] }}{{ comment.first_lang_stars}}</h6>
+			<h6>{{ copy['first_lang_review'] }}{{ copy['stars'] }}{{ comment.first_lang_stars}}</h6>
 			<p>{{ comment.first_lang_review }}</p>
 		</div>
 		<div class="lang-comment">
-			<h6>{{ copy['stars'] }}{{ comment.second_lang_stars}}</h6>
+			<h6>{{ copy['second_lang_review'] }}{{ copy['stars'] }}{{ comment.second_lang_stars}}</h6>
 			<p>{{ comment.second_lang_review }}</p>
 		</div>
 	</div>
+	{% endfor %}
 	<div class="add-comment">
-		{{ add_comment }}
+		<form action="{{ url_for('review', isbn=db['book']['book'].isbn) }}" method="get">
+			<input type="submit" value="{{ copy['submit_review'] }}">
+		</form>
 	</div>
 </div>
 {% endblock %}
