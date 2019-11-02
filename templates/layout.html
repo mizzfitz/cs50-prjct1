@@ -12,7 +12,7 @@
 				<h1>{{ copy['pg_name'] }}</h1>
 			</div>
 			<div class="search">
-				<form action="{{ url_for('index') }}" method="post">
+				<form action="{{ url_for('index') }}" method="POST">
 					<input type="text" name="search" placeholder="{{ copy['search_hint'] }}">
 					<input type="submit" value="{{ copy['search_btn'] }}">
 				</form>

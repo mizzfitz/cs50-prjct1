@@ -35,7 +35,7 @@ def index():
         return redirect(url_for("get_lang"))
     if not request.form.get("search"):
         return renderer.render("index", session["usr"])
-    db = dict(books=books.search(request.form.get("search")))
+    db = {"books": books.search(request.form.get("search"))}
     return renderer.render("search", session["usr"], db=db)
 
 @app.route("/lang", methods=["GET", "POST"])
@@ -95,6 +95,9 @@ def book(isbn):
 
 @app.route("/review/<string:isbn>", methods=["GET", "POST"])
 def review(isbn):
+    log_rt()
+    if session["usr"].usr_name == None:
+        return renderer.render("review_err", session["usr"])
     return "reviews here"
 
 @app.route("/logout")

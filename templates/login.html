@@ -4,7 +4,7 @@
 <div class="form">
 	<form action="{{ url_for('login') }}" method="POST">
 		<p><input type="text" name="usr_name" placeholder="{{ copy['usr_name'] }}">
-		<p><input type="test" name="passwd" placeholder="{{ copy['passwd'] }}">
+		<p><input type="password" name="passwd" placeholder="{{ copy['passwd'] }}">
 		{{ err_txt }}
 		<p><input type="submit" value="{{ copy['submit'] }}">
 	</form>

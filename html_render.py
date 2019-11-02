@@ -38,7 +38,7 @@ class Renderer:
         if usr.usr_name == None:
             return f"<a href=\"{url_for('login')}\">{text[usr.pref_lang]['login']}</a><a href=\"{url_for('sign_up')}\">{text[usr.pref_lang]['sign-up']}</a>"
         else:
-            return Markup(f"<a href=\"{{ url_for('{usr.usr_name}')\">%s</a><a href=\"{url_for('logout')}\">{text[usr.pref_lang]['logout']}</a>") % usr.usr_name
+            return Markup(f"<a href=''>%s</a><a href=\"{url_for('logout')}\">{text[usr.pref_lang]['logout']}</a>") % usr.usr_name
 
     def get_copy(self, page, lang):
         c = self.read_dict(page, lang)
