@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="book-info">
+<div class="book-review">
 	<h2>{{ db['book']['book'].title }}</h2>
 	<ul>
-		<li>{{ copy['book_author'] }}{{ db['book']['book'].author }}</li>
-		<li>{{ copy['book_isbn'] }}{{ db['book']['book'].isbn }}</li>
-		<li>{{ copy['book_year'] }}{{ db['book']['book'].year }}</li>
-		<li>{{ copy['book_lang'] }}{{ db['book']['book'].lang }}</li>
-		<li>{{ copy['book_avg_rev_1st'] }}{{ db['book']['first_lang_stars'] }}</li>
-		<li>{{ copy['book_avg_rev_2nd'] }}{{ db['book']['second_lang_stars'] }}</li>
+		<li>{{ copy['book_author'] }}<span class="book_stat">{{ db['book']['book'].author }}</span></li>
+		<li>{{ copy['book_isbn'] }}<span class="book_stat">{{ db['book']['book'].isbn }}</span></li>
+		<li>{{ copy['book_year'] }}<span class="book_stat">{{ db['book']['book'].year }}</span></li>
+		<li>{{ copy['book_lang'] }}<span class="book_stat">{{ db['book']['book'].lang }}</span></li>
+		<li>{{ copy['book_avg_rev_1st'] }}<span class="book_stat">{{ db['book']['first_lang_stars'] }}</span></li>
+		<li>{{ copy['book_avg_rev_2nd'] }}<span class="book_stat">{{ db['book']['second_lang_stars'] }}</span></li>
 	</ul>
 </div>
 <div class="comment-cont">
@@ -28,9 +28,7 @@
 	</div>
 	{% endfor %}
 	<div class="add-comment">
-		<form action="{{ url_for('review', isbn=db['book']['book'].isbn) }}" method="get">
-			<input type="submit" value="{{ copy['submit_review'] }}">
-		</form>
+		<a id="add-review" href="{{ url_for('review', isbn=db['book']['book'].isbn) }}">{{ copy['submit_review'] }}</a>
 	</div>
 </div>
 {% endblock %}

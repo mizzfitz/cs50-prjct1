@@ -1,5 +1,6 @@
 $col-background: #fffcf0;
 $col-statement: #e5d3af;
+$col-bold: #f5e3cf;
 $col-menu: #b4a083;
 $col-text: #0a0802;
 $col-text-bold: #c56f19;
@@ -22,6 +23,19 @@ $col-border: #5f5949;
 	box-shadow: -2px 2px 5px $col-border;
 }
 
+@mixin fancy-btn($height){
+	text-decoration: none;
+	float: right;
+	height: $height;
+	margin: 11px 5px;
+	line-height: $height;
+	padding: 0px 5px;
+	border: 1px solid $col-text-bold;
+	display: inline-block;
+	@extend %rounded-block;
+	@extend %light-shadow-box;
+}
+
 body{
 	background-color: $col-background;
 	color: $col-text;
@@ -31,6 +45,10 @@ body{
 
 a{
 	color: $col-text-bold;
+}
+
+ul{
+	padding-left: 0px;
 }
 
 .error{
@@ -62,17 +80,8 @@ a{
 		}
 
 		a{
-			text-decoration: none;
-			float: right;
-			height: 24px;
-			margin: 11px 5px;
-			line-height: 24px;
-			padding: 0px 5px;
+			@include fancy-btn(24px);
 			background-color: $col-background;
-			border: 1px solid $col-text-bold;
-			display: inline-block;
-			@extend %rounded-block;
-			@extend %light-shadow-box;
 		}
 		a::first-letter{
 			text-transform: capitalize;
@@ -147,6 +156,46 @@ a{
 				text-transform: capitalize;
 			}
 		}
+	}
+
+	.book-review{
+		display: inline-block;
+		@extend %rounded-block;
+		@extend %light-shadow-box;
+		padding: 10px 10px;
+		margin: 7px 7px;
+		text-transform: capitalize;
+
+		ul{
+			list-style-type: none;
+
+			li{
+				margin: 0px 5px;
+				border-bottom: 1px solid $col-border;
+			}
+
+			li:last-child{
+				border-bottom: none;
+			}
+
+			li::first-letter{
+				font-weight: 500;
+			}
+
+			span{
+				margin-left: 10px;
+				color: $col-text-bold;
+				display: inline-block;
+			}
+		}
+	}
+
+	#add-review{
+		@include fancy-btn(35px);
+		background-color: $col-bold;
+	}
+	#add-review:hover{
+		@extend %invert-shadow-box;
 	}
 }
 
