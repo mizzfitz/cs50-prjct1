@@ -15,14 +15,18 @@
 <div class="comment-cont">
 	{% for comment in db['comments'] %}
 	<div class="comment">
-		<h3>{{ comment.usr_name }}</h3>
-		<p>{{ copy['usr_lang_nat'] }}{{ comment.lang_nat }}</p>
+		<div class="usr-info">
+			<h3>{{ comment.usr_name }}</h3>
+			<p>{{ copy['usr_lang_nat'] }}<span class="colon-value">{{ comment.lang_nat }}</span></p>
+		</div>
 		<div class="lang-comment">
-			<h6>{{ copy['first_lang_review'] }}{{ copy['stars'] }}{{ comment.first_lang_stars}}</h6>
+			<h6 class="stars">{{ copy['stars'] }}<span class="colon-value">{{ comment.first_lang_stars}}</span></h6>
+			<h6>{{ copy['first_lang_review'] }}</h6>
 			<p>{{ comment.first_lang_review }}</p>
 		</div>
 		<div class="lang-comment">
-			<h6>{{ copy['second_lang_review'] }}{{ copy['stars'] }}{{ comment.second_lang_stars}}</h6>
+			<h6 class="stars">{{ copy['stars'] }}<span class="colon-value">{{ comment.second_lang_stars}}</span></h6>
+			<h6>{{ copy['second_lang_review'] }}</h6>
 			<p>{{ comment.second_lang_review }}</p>
 		</div>
 	</div>

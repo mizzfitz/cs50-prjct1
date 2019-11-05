@@ -1,25 +1,25 @@
-.content .form, .content .book, .content .book-review, .content #add-review, .content .review-form, .header div a {
+.content .form, .content .book, .content .book-review, .content #add-review, .content .review-form, .content .comment, .header div a {
   border-radius: 5px; }
 
 .header div h1 {
   text-shadow: 2px 2px 5px #5f5949; }
 
-.content .book, .content .book-review, .content #add-review, .header div a, .header div form input {
+.content .book, .content .book-review, .content #add-review, .content .review-form, .content .comment, .header div a, .header div form input {
   box-shadow: 2px 2px 5px #5f5949; }
 
-.content #add-review:hover, .content .review-form, .header div a:hover {
+.content #add-review:hover, .header div a:hover {
   box-shadow: -2px 2px 5px #5f5949; }
 
-.content .form, .content .book, .content .book-review, .content #add-review, .content .review-form, .header div a {
+.content .form, .content .book, .content .book-review, .content #add-review, .content .review-form, .content .comment, .header div a {
   border-radius: 5px; }
 
 .header div h1 {
   text-shadow: 2px 2px 5px #5f5949; }
 
-.content .book, .content .book-review, .content #add-review, .header div a, .header div form input {
+.content .book, .content .book-review, .content #add-review, .content .review-form, .content .comment, .header div a, .header div form input {
   box-shadow: 2px 2px 5px #5f5949; }
 
-.content #add-review:hover, .content .review-form, .header div a:hover {
+.content #add-review:hover, .header div a:hover {
   box-shadow: -2px 2px 5px #5f5949; }
 
 .content {
@@ -85,6 +85,25 @@
       width: 60%;
       height: 150px;
       resize: vertical; }
+  .content .comment {
+    padding: 10px 20px; }
+    .content .comment h3, .content .comment h5, .content .comment h6, .content .comment p {
+      margin: 0px 0px; }
+    .content .comment .colon-value {
+      margin-left: 5px;
+      font-weight: bold;
+      color: #c56f19; }
+    .content .comment div {
+      border-bottom: 1px solid #5f5949;
+      padding: 5px 0px; }
+      .content .comment div .stars {
+        float: right;
+        color: #c56f19;
+        font-size: 1em; }
+      .content .comment div h6 {
+        font-size: 1em; }
+    .content .comment div:last-child {
+      border-bottom: none; }
 
 body {
   background-color: #fffcf0;

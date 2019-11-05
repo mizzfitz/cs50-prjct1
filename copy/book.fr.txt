@@ -7,6 +7,6 @@ avis moyen pour lire on langue natale:
 avis moyen pour lire en deuxième langue:
 langue natale:
 étoiles:
-avis pour lire on langue natale
-avis pour lire on deuxième langue
+avis pour lire en langue natale
+avis pour lire en deuxième langue
 as tu lu ce livre? donnez l'avis!

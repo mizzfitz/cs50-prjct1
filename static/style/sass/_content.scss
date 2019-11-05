@@ -86,7 +86,7 @@
 
 	.review-form{
 		@extend %rounded-block;
-		@extend %invert-shadow-box;
+		@extend %light-shadow-box;
 		text-align: center;
 		padding: 10px;
 		
@@ -98,6 +98,41 @@
 			width: 60%;
 			height: 150px;
 			resize: vertical;
+		}
+	}
+
+	.comment{
+		@extend %rounded-block;
+		@extend %light-shadow-box;
+		padding: 10px 20px;
+
+		h3,h5,h6,p{
+			margin: 0px 0px;
+		}
+
+		.colon-value{
+			margin-left: 5px;
+			font-weight: bold;
+			color: $col-text-bold;
+		}
+
+		div{
+			border-bottom: 1px solid $col-border;
+			padding: 5px 0px;
+
+			.stars{
+				float: right;
+				color: $col-text-bold;
+				font-size: 1em;
+			}
+
+			h6{
+				font-size: 1em;
+			}
+		}
+
+		div:last-child{
+			border-bottom: none;
 		}
 	}
 }
