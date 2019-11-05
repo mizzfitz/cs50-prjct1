@@ -80,7 +80,13 @@ class Books:
         response = {"book": self.db.execute("SELECT id, isbn, title, author, year, lang FROM books WHERE isbn = :isbn;", {"isbn": isbn}).fetchone()}
         for k in keys:
             command = f"SELECT AVG({k}) FROM reviews WHERE book_id = {response['book'].id} GROUP BY book_id;"
-            response[k] = self.db.execute(command).fetchone()
+            response[k] = str(self.db.execute(command).fetchone().avg)
+            # truncate avg rating to 1 decimal place or the last digit before a zero
+            if ".0" in response[k]:
+                response[k] = response[k][0:3]
+            elif "0" in response[k]:
+                i = response[k].find("0")
+                response[k] = response[k][0:i]
         return response
 
     def get_review_by_book_id(self, book_id):
