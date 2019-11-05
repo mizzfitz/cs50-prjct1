@@ -1,0 +1,38 @@
+$col-background: #fffcf0;
+$col-statement: #e5d3af;
+$col-bold: #f5e3cf;
+$col-menu: #b4a083;
+$col-text: #0a0802;
+$col-text-bold: #c56f19;
+$col-error: red;
+$col-border: #5f5949;
+
+%rounded-block{
+	border-radius: 5px;
+}
+
+%light-shadow-txt{
+	text-shadow: 2px 2px 5px $col-border;
+}
+
+%light-shadow-box{
+	box-shadow: 2px 2px 5px $col-border;
+}
+
+%invert-shadow-box{
+	box-shadow: -2px 2px 5px $col-border;
+}
+
+@mixin fancy-btn($height){
+	text-decoration: none;
+	float: right;
+	height: $height;
+	margin: 11px 5px;
+	line-height: $height;
+	padding: 0px 5px;
+	border: 1px solid $col-text-bold;
+	display: inline-block;
+	@extend %rounded-block;
+	@extend %light-shadow-box;
+}
+

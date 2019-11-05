@@ -1,2 +1,2 @@
 BiLingue
-Doit étre connecter pour donner d'avis.
+Doit étre connecter pour donner d'avis et ce n'est pas possible de donner l'avis pour que t'as deja donner l'avis.

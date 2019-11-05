@@ -1,2 +1,2 @@
 BiLingue
-Must be signed in to make a review.
+Must be signed in to make a review and you cannot make a review on a book you have already reviewed.

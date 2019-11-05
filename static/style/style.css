@@ -1,74 +1,26 @@
-.header div a, .content .form, .content .book, .content .book-review, .content #add-review {
+.content .form, .content .book, .content .book-review, .content #add-review, .content .review-form, .header div a {
   border-radius: 5px; }
 
 .header div h1 {
   text-shadow: 2px 2px 5px #5f5949; }
 
-.header div a, .header div form input, .content .book, .content .book-review, .content #add-review {
+.content .book, .content .book-review, .content #add-review, .header div a, .header div form input {
   box-shadow: 2px 2px 5px #5f5949; }
 
-.header div a:hover, .content #add-review:hover {
+.content #add-review:hover, .content .review-form, .header div a:hover {
   box-shadow: -2px 2px 5px #5f5949; }
 
-body {
-  background-color: #fffcf0;
-  color: #0a0802;
-  margin: 0px;
-  font-family: Sans-serif; }
+.content .form, .content .book, .content .book-review, .content #add-review, .content .review-form, .header div a {
+  border-radius: 5px; }
 
-a {
-  color: #c56f19; }
+.header div h1 {
+  text-shadow: 2px 2px 5px #5f5949; }
 
-ul {
-  padding-left: 0px; }
+.content .book, .content .book-review, .content #add-review, .header div a, .header div form input {
+  box-shadow: 2px 2px 5px #5f5949; }
 
-.simple-msg {
-  text-align: center;
-  padding: 30px; }
-
-.error {
-  color: red; }
-
-.header {
-  background-color: #b4a083;
-  box-shadow: 0px 5px 10px #5f5949;
-  height: 50px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden; }
-  .header div {
-    margin: 0px;
-    display: block;
-    float: left;
-    width: 33%;
-    height: 50px; }
-    .header div h1 {
-      line-height: 50px;
-      font-size: 35px;
-      margin: -1px 15px; }
-    .header div a {
-      text-decoration: none;
-      float: right;
-      height: 24px;
-      margin: 11px 5px;
-      line-height: 24px;
-      padding: 0px 5px;
-      border: 1px solid #c56f19;
-      display: inline-block;
-      background-color: #fffcf0; }
-    .header div a::first-letter {
-      text-transform: capitalize; }
-    .header div form {
-      line-height: 30px;
-      margin: 7px 0px; }
-    .header div .header {
-      text-align: left; }
-    .header div .search {
-      text-align: center; }
-    .header div .usr-info {
-      text-align: right; }
+.content #add-review:hover, .content .review-form, .header div a:hover {
+  box-shadow: -2px 2px 5px #5f5949; }
 
 .content {
   margin: 65px 15%; }
@@ -124,6 +76,74 @@ ul {
     border: 1px solid #c56f19;
     display: inline-block;
     background-color: #f5e3cf; }
+  .content .review-form {
+    text-align: center;
+    padding: 10px; }
+    .content .review-form h6 {
+      display: inline-block; }
+    .content .review-form textarea {
+      width: 60%;
+      height: 150px;
+      resize: vertical; }
+
+body {
+  background-color: #fffcf0;
+  color: #0a0802;
+  margin: 0px;
+  font-family: Sans-serif; }
+
+a {
+  color: #c56f19; }
+
+ul {
+  padding-left: 0px; }
+
+.simple-msg {
+  text-align: center;
+  padding: 30px; }
+
+.error {
+  color: red; }
+
+.header {
+  background-color: #b4a083;
+  box-shadow: 0px 5px 10px #5f5949;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  .header div {
+    margin: 0px;
+    display: block;
+    float: left;
+    width: 33%;
+    height: 50px; }
+    .header div h1 {
+      line-height: 50px;
+      font-size: 35px;
+      margin: -1px 15px; }
+    .header div a {
+      text-decoration: none;
+      float: right;
+      height: 24px;
+      margin: 11px 5px;
+      line-height: 24px;
+      padding: 0px 5px;
+      border: 1px solid #c56f19;
+      display: inline-block;
+      background-color: #fffcf0; }
+    .header div a::first-letter {
+      text-transform: capitalize; }
+    .header div form {
+      line-height: 30px;
+      margin: 7px 0px; }
+    .header div .header {
+      text-align: left; }
+    .header div .search {
+      text-align: center; }
+    .header div .usr-info {
+      text-align: right; }
 
 @media (max-width: 605px) {
   .header {
@@ -150,7 +170,9 @@ ul {
       margin: 10px 0px;
       box-shadow: none; }
     .content .book {
-      height: 120px; } }
+      height: 120px; }
+    .content .review-form textarea {
+      width: 100%; } }
 @media (min-width: 606px) and (max-width: 1365px) {
   .header div {
     width: auto;
@@ -173,6 +195,8 @@ ul {
     .content .form {
       margin: 0px; }
     .content .book {
-      height: 90px; } }
+      height: 90px; }
+    .content .review-form textarea {
+      width: 80%; } }
 
 /*# sourceMappingURL=style.css.map */

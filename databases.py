@@ -60,9 +60,11 @@ class Books:
         self.books = [["The Way of Shadows", "en", 1257],["The Fellowship of the Ring", "en", 3480],["Le Petit Prince", "fr", 1563]]
         self.db = db
 
+    def escape_chars(self, text):
+        return text.replace("'", "''")
+
     def search(self, search):
-        if "'" in search:
-            search = search.replace("'", "''")
+        search = self.escape_chars(search)
         db_namespc = ["isbn","title","author"]
         result = []
         for i in db_namespc:
@@ -71,7 +73,7 @@ class Books:
         return result
 
     def get_id_by_isbn(self, isbn):
-        return self.db.execute("SELECT id FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone()
+        return self.db.execute("SELECT id FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone().id
 
     def get_by_isbn(self, isbn):
         keys = ["first_lang_stars", "second_lang_stars"]
@@ -81,15 +83,24 @@ class Books:
             response[k] = self.db.execute(command).fetchone()
         return response
 
-class Reviews:
-    
-    def __init__(self, db):
-        self.db = db
-
-    def get_by_book_id(self, book_id):
+    def get_review_by_book_id(self, book_id):
         return self.db.execute("SELECT first_lang_stars, second_lang_stars, first_lang_review, second_lang_review, usr_name, lang_nat FROM reviews JOIN users ON reviews.usr_id = users.id WHERE reviews.book_id = :book_id;", {"book_id": book_id}).fetchall()
 
-    def add(self, book_id, usr_id, review):
+    def check_reviewer(self, usr_id, book_id):
+        command = f"SELECT COUNT(*) FROM reviews WHERE book_id = {book_id} AND usr_id = {usr_id};"
+        check = self.db.execute(command).fetchone()
+        if check.count == 0:
+            return True;
+        else:
+            return False;
+
+    def add_review(self, book_id, usr_id, review_form):
+        review = review_form.copy()
+        review['1st_lang_review'] = self.escape_chars(review['1st_lang_review'])
+        review['2nd_lang_review'] = self.escape_chars(review['2nd_lang_review'])
+        command = f"INSERT INTO reviews (usr_id, book_id, first_lang_stars, second_lang_stars, first_lang_review, second_lang_review) VALUES ({usr_id}, {book_id}, {review['1st_lang_star']}, {review['2nd_lang_star']}, '{review['1st_lang_review']}', '{review['2nd_lang_review']}')"
+        self.db.execute(command)
+        self.db.commit()
         return 0
 
 if __name__ == "__main__":

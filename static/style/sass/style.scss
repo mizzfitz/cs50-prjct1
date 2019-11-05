@@ -1,40 +1,5 @@
-$col-background: #fffcf0;
-$col-statement: #e5d3af;
-$col-bold: #f5e3cf;
-$col-menu: #b4a083;
-$col-text: #0a0802;
-$col-text-bold: #c56f19;
-$col-error: red;
-$col-border: #5f5949;
-
-%rounded-block{
-	border-radius: 5px;
-}
-
-%light-shadow-txt{
-	text-shadow: 2px 2px 5px $col-border;
-}
-
-%light-shadow-box{
-	box-shadow: 2px 2px 5px $col-border;
-}
-
-%invert-shadow-box{
-	box-shadow: -2px 2px 5px $col-border;
-}
-
-@mixin fancy-btn($height){
-	text-decoration: none;
-	float: right;
-	height: $height;
-	margin: 11px 5px;
-	line-height: $height;
-	padding: 0px 5px;
-	border: 1px solid $col-text-bold;
-	display: inline-block;
-	@extend %rounded-block;
-	@extend %light-shadow-box;
-}
+@import "mixins";
+@import "content";
 
 body{
 	background-color: $col-background;
@@ -68,7 +33,6 @@ ul{
 	position: fixed;
 	top: 0;
 	left: 0;
-	overflow: hidden;
 
 	div{
 		margin: 0px;
@@ -119,91 +83,6 @@ ul{
 	}
 }
 
-.content{
-	margin: 65px 15%;
-	
-	.form{
-		background-color: $col-statement;
-		text-align: center;
-		margin: 60px 25%;
-		box-shadow: 0px 0px 10px $col-border;
-		padding: 10px;
-		@extend %rounded-block;
-
-		span{
-			display: inline-block;
-		}
-	}
-
-	.book{
-		color: $col-text;
-		@extend %rounded-block;
-		@extend %light-shadow-box;
-		padding: 5px 10px;
-		padding-bottom: 40px;
-		margin: 7px 0px;
-		text-transform: capitalize;
-
-		h2{
-			margin: 0px 0px;
-		}
-
-		ul{
-			list-style-type: none;
-
-			li{
-				margin: 0px 10px;
-				float: left;
-			}
-
-			.book_stat{
-				color: $col-text-bold;
-				text-transform: capitalize;
-			}
-		}
-	}
-
-	.book-review{
-		display: inline-block;
-		@extend %rounded-block;
-		@extend %light-shadow-box;
-		padding: 10px 10px;
-		margin: 7px 7px;
-		text-transform: capitalize;
-
-		ul{
-			list-style-type: none;
-
-			li{
-				margin: 0px 5px;
-				border-bottom: 1px solid $col-border;
-			}
-
-			li:last-child{
-				border-bottom: none;
-			}
-
-			li::first-letter{
-				font-weight: 500;
-			}
-
-			span{
-				margin-left: 10px;
-				color: $col-text-bold;
-				display: inline-block;
-			}
-		}
-	}
-
-	#add-review{
-		@include fancy-btn(35px);
-		background-color: $col-bold;
-	}
-	#add-review:hover{
-		@extend %invert-shadow-box;
-	}
-}
-
 @media (max-width: 605px) {
 	.header{
 		height: auto;
@@ -238,6 +117,12 @@ ul{
 
 		.book{
 			height: 120px;
+		}
+
+		.review-form{
+			textarea{
+				width: 100%;
+			}
 		}
 	}
 }
@@ -279,6 +164,12 @@ ul{
 
 		.book{
 			height: 90px;
+		}
+
+		.review-form{
+			textarea{
+				width: 80%;
+			}
 		}
 	}
 }

@@ -3,3 +3,4 @@ Nom d'utilisateur est vide ou deja utilisé
 Doit choisissez une langue natal et langue préfèré
 Mots clés doit étre pareille et doit avoir au moins six (6) caractères
 Il y a été une erreur unconnue
+L'avis doit contenire les étoiles pour lire en langue natale et en deuxieme langue.

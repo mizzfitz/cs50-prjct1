@@ -3,6 +3,7 @@
 {% block content %}
 <div class="form">
 	<form action="{{ url_for('sign_up') }}" method="POST">
+		{{ err_txt }}
 		<h6>{{ copy['usr_name'] }}</h6>
 		<p><input type="text" name="usr_name" placeholder="{{ copy['usr_name'] }}">
 		<h6>{{ copy['passwd1'] }}</h6>
@@ -15,7 +16,6 @@
 		<p>{{ copy['lang_pref_exp'] }}</p>
 		<p><input type="radio" name="pref-lang" value="fr">{{ copy['radio_fr'] }}
 		<input type="radio" name="pref-lang" value="en">{{ copy['radio_en'] }}
-		{{ err_txt }}
 		<p><input type="submit" value="{{ copy['submit'] }}">
 	</form>
 </div>

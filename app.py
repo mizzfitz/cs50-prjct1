@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, json
 
 from flask import Flask, request, session, redirect, url_for
 from flask_session import Session
@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 from html_render import Renderer
-from databases import Books, Reviews, Users, Usr, User
+from databases import Books, Users, Usr, User
 from session_manager import log_rt, check_lang, resume_sess
 
 app = Flask(__name__)
@@ -24,7 +24,6 @@ db = scoped_session(sessionmaker(bind=engine))
 
 users = Users(db)
 books = Books(db)
-reviews = Reviews(db)
 
 renderer = Renderer(app.root_path)
 
@@ -90,15 +89,23 @@ def book(isbn):
     if check_lang():
         return redirect(url_for("get_lang"))
     db = {"book": books.get_by_isbn(isbn)}
-    db["comments"] = reviews.get_by_book_id(db["book"]["book"].id)
+    db["comments"] = books.get_review_by_book_id(db["book"]["book"].id)
     return renderer.render("book", session["usr"], db=db)
 
 @app.route("/review/<string:isbn>", methods=["GET", "POST"])
 def review(isbn):
     log_rt()
-    if session["usr"].usr_name == None:
+    # handle conditions where user is not allowed to post a review
+    book_id=books.get_id_by_isbn(isbn)
+    if session["usr"].usr_name == None or not books.check_reviewer(session["usr"].usr_id, book_id):
         return renderer.render("review_err", session["usr"])
-    return "reviews here"
+    if request.method == "POST":
+        # check submited review
+        if not request.form.get("1st_lang_star") or not request.form.get("1st_lang_star"):
+            return renderer.render("review", session["usr"], copy={"review_isbn": isbn}, err="err-review-stars")
+        books.add_review(book_id, session["usr"].usr_id, request.form)
+        return redirect(url_for("book", isbn=isbn))
+    return renderer.render("review", session["usr"], copy={"review_isbn": isbn})
 
 @app.route("/logout")
 def logout():

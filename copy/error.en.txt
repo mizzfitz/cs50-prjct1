@@ -3,3 +3,4 @@ User name is blank or already exists
 Must choose a language
 Passwords must match and must contain at least six (6) characters
 An unknown error occured
+Review must contain a rating for reading in a first and a second language

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="review-form">
+	<form action="{{ url_for('review', isbn=copy['review_isbn']) }}" method="POST">
+		{{ err_txt }}
+		<h6>{{ copy['first_lang'] }}</h6>
+		<div class="stars">
+			<h6>{{ copy['stars'] }}</h6>
+			<span><input type="radio" name="1st_lang_star" value=1>1
+			<span><input type="radio" name="1st_lang_star" value=2>2
+			<span><input type="radio" name="1st_lang_star" value=3>3
+			<span><input type="radio" name="1st_lang_star" value=4>4
+			<span><input type="radio" name="1st_lang_star" value=5>5
+		</div>
+		<div class="review-body">
+			<textarea type="text" name="1st_lang_review"></textarea>
+		</div>
+		<h6>{{ copy['second_lang'] }}</h6>
+		<div class="stars">
+			<h6>{{ copy['stars'] }}</h6>
+			<span><input type="radio" name="2nd_lang_star" value=1>1
+			<span><input type="radio" name="2nd_lang_star" value=2>2
+			<span><input type="radio" name="2nd_lang_star" value=3>3
+			<span><input type="radio" name="2nd_lang_star" value=4>4
+			<span><input type="radio" name="2nd_lang_star" value=5>5
+		</div>
+		<div class="review-body">
+			<textarea type="text" name="2nd_lang_review"></textarea>
+		</div>
+		<div>
+			<input type="submit" value="{{ copy['submit'] }}">
+		</div>
+	</form>
+</div>
+{% endblock %}

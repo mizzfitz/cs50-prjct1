@@ -1,0 +1,103 @@
+@import "mixins";
+
+.content{
+	margin: 65px 15%;
+	
+	.form{
+		background-color: $col-statement;
+		text-align: center;
+		margin: 60px 25%;
+		box-shadow: 0px 0px 10px $col-border;
+		padding: 10px;
+		@extend %rounded-block;
+
+		span{
+			display: inline-block;
+		}
+	}
+
+	.book{
+		color: $col-text;
+		@extend %rounded-block;
+		@extend %light-shadow-box;
+		padding: 5px 10px;
+		padding-bottom: 40px;
+		margin: 7px 0px;
+		text-transform: capitalize;
+
+		h2{
+			margin: 0px 0px;
+		}
+
+		ul{
+			list-style-type: none;
+
+			li{
+				margin: 0px 10px;
+				float: left;
+			}
+
+			.book_stat{
+				color: $col-text-bold;
+				text-transform: capitalize;
+			}
+		}
+	}
+
+	.book-review{
+		display: inline-block;
+		@extend %rounded-block;
+		@extend %light-shadow-box;
+		padding: 10px 10px;
+		margin: 7px 7px;
+		text-transform: capitalize;
+
+		ul{
+			list-style-type: none;
+
+			li{
+				margin: 0px 5px;
+				border-bottom: 1px solid $col-border;
+			}
+
+			li:last-child{
+				border-bottom: none;
+			}
+
+			li::first-letter{
+				font-weight: 500;
+			}
+
+			span{
+				margin-left: 10px;
+				color: $col-text-bold;
+				display: inline-block;
+			}
+		}
+	}
+
+	#add-review{
+		@include fancy-btn(35px);
+		background-color: $col-bold;
+	}
+	#add-review:hover{
+		@extend %invert-shadow-box;
+	}
+
+	.review-form{
+		@extend %rounded-block;
+		@extend %invert-shadow-box;
+		text-align: center;
+		padding: 10px;
+		
+		h6{
+			display: inline-block;
+		}
+
+		textarea{
+			width: 60%;
+			height: 150px;
+			resize: vertical;
+		}
+	}
+}
