@@ -3,6 +3,7 @@ auteur:
 isbn:
 année:
 langue original:
+compte d'avis:
 avis moyen pour lire on langue natale:
 avis moyen pour lire en deuxième langue:
 langue natale:

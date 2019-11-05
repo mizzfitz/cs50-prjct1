@@ -78,15 +78,26 @@ class Books:
     def get_by_isbn(self, isbn):
         keys = ["first_lang_stars", "second_lang_stars"]
         response = {"book": self.db.execute("SELECT id, isbn, title, author, year, lang FROM books WHERE isbn = :isbn;", {"isbn": isbn}).fetchone()}
+        command = f"SELECT COUNT(*) FROM reviews WHERE book_id = {response['book'].id} GROUP BY book_id;"
+        count = self.db.execute(command).fetchone()
+        if count:
+            response["review_count"] = count.count
+        else:
+            response["review_count"] = 0
         for k in keys:
             command = f"SELECT AVG({k}) FROM reviews WHERE book_id = {response['book'].id} GROUP BY book_id;"
-            response[k] = str(self.db.execute(command).fetchone().avg)
-            # truncate avg rating to 1 decimal place or the last digit before a zero
-            if ".0" in response[k]:
-                response[k] = response[k][0:3]
-            elif "0" in response[k]:
-                i = response[k].find("0")
-                response[k] = response[k][0:i]
+            value = self.db.execute(command).fetchone()
+            # if we have a response, format it into a readable string
+            if value:
+                response[k] = str(value.avg)
+                # truncate avg rating to 1 decimal place or the last digit before a zero
+                if ".0" in response[k]:
+                    response[k] = response[k][0:3]
+                elif "0" in response[k]:
+                    i = response[k].find("0")
+                    response[k] = response[k][0:i]
+            else:
+                response[k] = value
         return response
 
     def get_review_by_book_id(self, book_id):

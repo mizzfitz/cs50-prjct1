@@ -107,6 +107,22 @@ def review(isbn):
         return redirect(url_for("book", isbn=isbn))
     return renderer.render("review", session["usr"], copy={"review_isbn": isbn})
 
+@app.route("/api/<string:isbn>", methods=["GET"])
+def api(isbn):
+    book = {}
+    try:
+        book = books.get_by_isbn(isbn)
+        response = {"title": book["book"].title,
+                "author": book["book"].author,
+                "year": book["book"].year,
+                "isbn": book["book"].isbn,
+                "review_count": book["review_count"],
+                "first_language_average_score": book["first_lang_stars"],
+                "second_language_average_score": book["second_lang_stars"]}
+        return json.dumps(response)
+    except:
+        return "404 ERROR: NOT FOUND"
+
 @app.route("/logout")
 def logout():
     session["usr"] = Usr(None, session["usr"].pref_lang, 0)

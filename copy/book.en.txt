@@ -3,6 +3,7 @@ author:
 isbn:
 year:
 original language:
+review count:
 average review for reading in a first language:
 average review for reading in a second language:
 first language:
