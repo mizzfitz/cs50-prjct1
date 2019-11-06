@@ -14,7 +14,7 @@
 	</ul>
 </div>
 {% if db["goodreads"] %}
-<div class="book-review goodreads">
+<div id="goodreads" class="book-review">
 	<a href="goodreads.com"><h2>Goodreads</h2></a>
 	<ul>
 		<li>{{ copy["review_count"] }}<span class="book_stat">{{ db["goodreads"]["work_ratings_count"] }}</span></li>

@@ -124,10 +124,9 @@ def book(isbn):
     if check_lang():
         return redirect(url_for("get_lang"))
     db = {"book": books.get_by_isbn(isbn)}
-    db["goodreads"] = goodreads_rev(isbn)
+    db["goodreads"] = goodreads_rev(db["book"]["book"].isbn)
     db["comments"] = books.get_review_by_book_id(db["book"]["book"].id)
-    #return renderer.render("book", session["usr"], db=db)
-    return db["goodreads"]
+    return renderer.render("book", session["usr"], db=db)
 
 @app.route("/review/<string:isbn>", methods=["GET", "POST"])
 def review(isbn):

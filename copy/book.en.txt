@@ -6,8 +6,8 @@ original language:
 review count:
 average review for reading in a first language:
 average review for reading in a second language:
-first language:
 average rating:
+first language:
 stars:
 review for reading in a first language
 review for reading in a second language

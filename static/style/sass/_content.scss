@@ -2,6 +2,13 @@
 
 .content{
 	margin: 65px 15%;
+	padding: 0px 7px;
+	text-align: center;
+
+	div{
+		text-align: left;
+		margin: 5px 0px;
+	}
 	
 	.form{
 		background-color: $col-statement;
@@ -48,9 +55,8 @@
 		display: inline-block;
 		@extend %rounded-block;
 		@extend %light-shadow-box;
-		padding: 10px 10px;
-		margin: 7px 7px;
 		text-transform: capitalize;
+		padding: 10px 10px;
 
 		ul{
 			list-style-type: none;
@@ -58,6 +64,7 @@
 			li{
 				margin: 0px 5px;
 				border-bottom: 1px solid $col-border;
+				line-height: 1.2;
 			}
 
 			li:last-child{
@@ -69,7 +76,6 @@
 			}
 
 			span{
-				margin-left: 10px;
 				color: $col-text-bold;
 				display: inline-block;
 			}

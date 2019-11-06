@@ -25,7 +25,8 @@ def log_rt():
 
 def goodreads_rev(isbn):
     """ function for getting review info from goodreads api """
-    r = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "O8fo8CINWE0gI5EgY1GaUw", "isbns": [isbn]})
+    isbn = isbn.strip()
+    r = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "O8fo8CINWE0gI5EgY1GaUw", "isbns": isbn})
     try:
         return r.json()["books"][0]
     except:
