@@ -1,3 +1,5 @@
+import requests
+
 from flask import request, session, redirect, url_for
 from databases import Usr
 
@@ -20,6 +22,16 @@ def log_rt():
         session["req_log"].append(request.url)
         while len(session["req_log"]) > 5:
             session["req_log"].pop(0)
+
+def goodreads_rev(isbn):
+    """ function for getting review info from goodreads api """
+    r = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "O8fo8CINWE0gI5EgY1GaUw", "isbns": isbn})
+    return r.text
+    """try:
+        dat = res.json().get("books")
+        return dat[0]
+    except:
+        return None """
 
 def check_lang():
     """ function to check if the user has selected a prefered language and redirect them to the language selection if they have not """

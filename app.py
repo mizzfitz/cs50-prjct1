@@ -1,6 +1,6 @@
-import os, sys, json
+import os, sys
 
-from flask import Flask, request, session, redirect, url_for
+from flask import Flask, request, session, redirect, url_for, jsonify
 from flask_session import Session
 
 from sqlalchemy import create_engine
@@ -13,7 +13,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
     session_manager has a handful of functions for session overhead """
 from html_render import Renderer
 from databases import Books, Users, Usr, User
-from session_manager import log_rt, check_lang, resume_sess
+from session_manager import log_rt, check_lang, resume_sess, goodreads_rev
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -124,8 +124,10 @@ def book(isbn):
     if check_lang():
         return redirect(url_for("get_lang"))
     db = {"book": books.get_by_isbn(isbn)}
+    db["goodreads"] = goodreads_rev(isbn)
     db["comments"] = books.get_review_by_book_id(db["book"]["book"].id)
-    return renderer.render("book", session["usr"], db=db)
+    #return renderer.render("book", session["usr"], db=db)
+    return db["goodreads"]
 
 @app.route("/review/<string:isbn>", methods=["GET", "POST"])
 def review(isbn):
@@ -151,16 +153,15 @@ def api(isbn):
     try:
         # return book info formated into a json file (inside a try catch in case the isbn is not in our database)
         book = books.get_by_isbn(isbn)
-        response = {"title": book["book"].title,
+        return jsonify({"title": book["book"].title,
                 "author": book["book"].author,
                 "year": book["book"].year,
                 "isbn": book["book"].isbn,
                 "review_count": book["review_count"],
                 "first_language_average_score": book["first_lang_stars"],
-                "second_language_average_score": book["second_lang_stars"]}
-        return json.dumps(response)
+                "second_language_average_score": book["second_lang_stars"]})
     except:
-        return "404 ERROR: NOT FOUND"
+        return jsonify({"error": "not found"}), 404
 
 @app.route("/logout")
 def logout():

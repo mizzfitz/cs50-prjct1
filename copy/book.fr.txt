@@ -6,6 +6,7 @@ langue original:
 compte d'avis:
 avis moyen pour lire on langue natale:
 avis moyen pour lire en deuxième langue:
+avis moyen:
 langue natale:
 étoiles:
 avis pour lire en langue natale

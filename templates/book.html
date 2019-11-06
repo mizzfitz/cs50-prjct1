@@ -2,38 +2,47 @@
 
 {% block content %}
 <div class="book-review">
-	<h2>{{ db['book']['book'].title }}</h2>
+	<h2>{{ db["book"]["book"].title }}</h2>
 	<ul>
-		<li>{{ copy['book_author'] }}<span class="book_stat">{{ db['book']['book'].author }}</span></li>
-		<li>{{ copy['book_isbn'] }}<span class="book_stat">{{ db['book']['book'].isbn }}</span></li>
-		<li>{{ copy['book_year'] }}<span class="book_stat">{{ db['book']['book'].year }}</span></li>
-		<li>{{ copy['book_lang'] }}<span class="book_stat">{{ db['book']['book'].lang }}</span></li>
-		<li>{{ copy['review_count'] }}<span class="book_stat">{{ db['book']['review_count'] }}</span></li>
-		<li>{{ copy['book_avg_rev_1st'] }}<span class="book_stat">{{ db['book']['first_lang_stars'] }}</span></li>
-		<li>{{ copy['book_avg_rev_2nd'] }}<span class="book_stat">{{ db['book']['second_lang_stars'] }}</span></li>
+		<li>{{ copy["book_author"] }}<span class="book_stat">{{ db["book"]["book"].author }}</span></li>
+		<li>{{ copy["book_isbn"] }}<span class="book_stat">{{ db["book"]["book"].isbn }}</span></li>
+		<li>{{ copy["book_year"] }}<span class="book_stat">{{ db["book"]["book"].year }}</span></li>
+		<li>{{ copy["book_lang"] }}<span class="book_stat">{{ db["book"]["book"].lang }}</span></li>
+		<li>{{ copy["review_count"] }}<span class="book_stat">{{ db["book"]["review_count"] }}</span></li>
+		<li>{{ copy["book_avg_rev_1st"] }}<span class="book_stat">{{ db["book"]["first_lang_stars"] }}</span></li>
+		<li>{{ copy["book_avg_rev_2nd"] }}<span class="book_stat">{{ db["book"]["second_lang_stars"] }}</span></li>
 	</ul>
 </div>
+{% if db["goodreads"] %}
+<div class="book-review goodreads">
+	<a href="goodreads.com"><h2>Goodreads</h2></a>
+	<ul>
+		<li>{{ copy["review_count"] }}<span class="book_stat">{{ db["goodreads"]["work_ratings_count"] }}</span></li>
+		<li>{{ copy["book_avg_review"] }}<span class="book_stat">{{ db["goodreads"]["average_rating"] }}</span></li>
+	</ul>
+</div>
+{% endif %}
 <div class="comment-cont">
-	{% for comment in db['comments'] %}
+	{% for comment in db["comments"] %}
 	<div class="comment">
 		<div class="usr-info">
 			<h3>{{ comment.usr_name }}</h3>
-			<p>{{ copy['usr_lang_nat'] }}<span class="colon-value">{{ comment.lang_nat }}</span></p>
+			<p>{{ copy["usr_lang_nat"] }}<span class="colon-value">{{ comment.lang_nat }}</span></p>
 		</div>
 		<div class="lang-comment">
-			<h6 class="stars">{{ copy['stars'] }}<span class="colon-value">{{ comment.first_lang_stars}}</span></h6>
-			<h6>{{ copy['first_lang_review'] }}</h6>
+			<h6 class="stars">{{ copy["stars"] }}<span class="colon-value">{{ comment.first_lang_stars}}</span></h6>
+			<h6>{{ copy["first_lang_review"] }}</h6>
 			<p>{{ comment.first_lang_review }}</p>
 		</div>
 		<div class="lang-comment">
-			<h6 class="stars">{{ copy['stars'] }}<span class="colon-value">{{ comment.second_lang_stars}}</span></h6>
-			<h6>{{ copy['second_lang_review'] }}</h6>
+			<h6 class="stars">{{ copy["stars"] }}<span class="colon-value">{{ comment.second_lang_stars}}</span></h6>
+			<h6>{{ copy["second_lang_review"] }}</h6>
 			<p>{{ comment.second_lang_review }}</p>
 		</div>
 	</div>
 	{% endfor %}
 	<div class="add-comment">
-		<a id="add-review" href="{{ url_for('review', isbn=db['book']['book'].isbn) }}">{{ copy['submit_review'] }}</a>
+		<a id="add-review" href="{{ url_for("review", isbn=db["book"]["book"].isbn) }}">{{ copy["submit_review"] }}</a>
 	</div>
 </div>
 {% endblock %}
