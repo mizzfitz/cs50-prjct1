@@ -2,15 +2,27 @@ from flask import request, session, redirect, url_for
 from databases import Usr
 
 def resume_sess():
-    if session.get("req_log") is None or session.get("req_log") == request.endpoint:
+    """ function to return user to where they were prior to login/sign_up or language selection """
+    if session.get("req_log") is None:
         return redirect(url_for("index"))
-    else:
-        return redirect(url_for(session["req_log"]))
+    while session["req_log"][-1] == request.url:
+        session["req_log"].pop()
+        if len(session["req_log"]) < 1:
+            session["req_log"] = [url_for("index")]
+            return redirect(url_for("index"))
+    return redirect(session["req_log"][-1])
 
 def log_rt():
-    session["req_log"] = request.endpoint
+    """ function to log the users location within the app for use in resume_sess() """
+    if session.get("req_log") is None:
+        session["req_log"] = [request.url]
+    else:
+        session["req_log"].append(request.url)
+        while len(session["req_log"]) > 5:
+            session["req_log"].pop(0)
 
 def check_lang():
+    """ function to check if the user has selected a prefered language and redirect them to the language selection if they have not """
     if session.get("usr") is None:
         session["usr"] = Usr(None)
         return True
