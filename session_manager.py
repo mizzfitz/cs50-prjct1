@@ -25,13 +25,11 @@ def log_rt():
 
 def goodreads_rev(isbn):
     """ function for getting review info from goodreads api """
-    r = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "O8fo8CINWE0gI5EgY1GaUw", "isbns": isbn})
-    return r.text
-    """try:
-        dat = res.json().get("books")
-        return dat[0]
+    r = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "O8fo8CINWE0gI5EgY1GaUw", "isbns": [isbn]})
+    try:
+        return r.json()["books"][0]
     except:
-        return None """
+        return None
 
 def check_lang():
     """ function to check if the user has selected a prefered language and redirect them to the language selection if they have not """
